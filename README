@@ -1,0 +1,10 @@
+The following it's a Java Excxercise for the the Globant's TAE course
+
+this is a intellij project, so far no mvn build.
+
+roadmap
+
+*mvp for the university admin
+-mvn build
+-validations for inputs
+-graphical interface
