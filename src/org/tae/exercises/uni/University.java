@@ -101,6 +101,15 @@ public class University {
         System.out.println("***************");
     }
 
+    public void displayStudents(){
+
+        System.out.println("***\t Id \t - \t Name \t - \t Age \t***");
+        for(Student candidate: alumnni){
+            candidate.showYourself();
+        }
+        System.out.println("***************");
+    }
+
     /**
      * Function to display all courses where a student its in, only with its id, need to find something better that going through various for
      * @param studentId
@@ -116,6 +125,12 @@ public class University {
     }
     public void displayAllCourses(){
         for(Course course: fullCourse){
+                course.displayCourse();
+        }
+    }
+    public void displayCoursesById(String courseId){
+        for(Course course: fullCourse){
+            if(course.getName().equals(courseId))
                 course.displayCourse();
         }
     }

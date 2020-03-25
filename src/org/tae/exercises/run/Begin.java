@@ -41,13 +41,15 @@ public class Begin {
                     courseDisplayManager();
                     break;
                 }case 3:{
-
+                    newStudent();
                     break;
                 }case 4:{
-
+                    newCourse();
                     break;
                 }
                 case 5:{
+                    System.out.println("Please type the student's id");
+                    university.displayAllStudentCourses(scanner.nextLine());
                     break;
                 }
                 case 6:{
@@ -63,12 +65,78 @@ public class Begin {
 
     }
 
+    /**
+     * objective: show and collect the necessary data to create a new student
+     */
+    private static void newStudent(){
+        Scanner scanner = new Scanner(System.in);
+        String studentsName;
+        String studentsId;
+        String courseName;
+        int studentsAge;
+        System.out.println("Welcome to the new student section, please provide the necessary information:");
+
+        System.out.println("Student's name?");
+        studentsName = scanner.nextLine();
+
+        System.out.println("Student's id?");
+        studentsId = scanner.nextLine();
+
+        System.out.println("Student's age?");
+        studentsAge = scanner.nextInt();
+        scanner.nextLine();
+
+        university.registerStudent(studentsName,studentsId,studentsAge);
+
+        System.out.println("Course to add him?");
+        university.displayAllCourses();
+        courseName = scanner.nextLine();
+
+        university.registerStudentIntoCourse(studentsId,courseName);
+
+    }
+
+    /**
+     *objective: ask the necesasary data to create a new course, add and exsiting teacher and set up students.
+     */
+    private static void newCourse(){
+        Scanner scanner = new Scanner(System.in);
+        String courseName;
+        String courseClassroom;
+        String teachersId;
+        String studentsIds;
+        int courseHoursPerWeek;
+        System.out.println("Welcome to the new course section, please provide the necessary information:");
+        System.out.println("Course's name?");
+        courseName = scanner.nextLine();
+
+        System.out.println("Course's classroom?");
+        courseClassroom = scanner.nextLine();
+
+        System.out.println("How many hours per week?");
+        courseHoursPerWeek = scanner.nextInt();
+        scanner.nextLine();
+
+        System.out.println("Please select a teacher from the ones below:");
+        university.displayTeachers();
+        teachersId = scanner.nextLine();
+
+        System.out.println("please select all the students from the list below and type them comma separated. Eg: Id1,Id2,Id3");
+        university.displayStudents();
+        studentsIds = scanner.nextLine();
+
+        university.registerCourse(courseName,courseClassroom,courseHoursPerWeek,teachersId,studentsIds.split(","));
+    }
+
+    /**
+     * objective: menu for showing the courses
+     */
     private static void courseDisplayManager(){
         int menuSelection = 0;
         System.out.println("Course display management: ");
         System.out.println();
         System.out.println("1 - Print all the courses \n" +
-                "2 - Print a specific course\n");
+                "2 - Print a specific course by id\n");
         Scanner scanner = new Scanner(System.in);
         menuSelection = scanner.nextInt();
         scanner.nextLine();
@@ -77,7 +145,8 @@ public class Begin {
                 university.displayAllCourses();
                 break;
             }case 2:{
-                university.displayAllStudentCourses("");
+                System.out.println("Please type the course id");
+                university.displayCoursesById(scanner.nextLine());
                 break;
             }
             default:{
