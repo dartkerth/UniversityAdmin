@@ -134,4 +134,9 @@ public class University {
                 course.displayCourse();
         }
     }
+
+
+    public boolean validateTeacher(Teacher teachToValidate){
+        return false;
+    }
 }
